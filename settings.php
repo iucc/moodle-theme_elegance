@@ -51,6 +51,14 @@ defined('MOODLE_INTERNAL') || die;
     $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
     $temp->add($setting);
 
+    // Mobile blocks above main.
+    $name = 'theme_elegance/mobileblocksabovemain';
+    $title = get_string('mobileblocksabovemain', 'theme_elegance');
+    $description = get_string('mobileblocksabovemain_desc', 'theme_elegance');
+    $default = '0';
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $temp->add($setting);
+
     // Font Icons
     $name = 'theme_elegance/fonticons';
     $title = get_string('fonticons', 'theme_elegance');
@@ -58,6 +66,37 @@ defined('MOODLE_INTERNAL') || die;
     $default = '0';
     $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
     $temp->add($setting);
+
+    // Pre-login Content - English.
+    $name = 'theme_elegance/prelogincontenten';
+    $title = get_string('prelogincontenten', 'theme_elegance');
+    $description = get_string('prelogincontentendesc', 'theme_elegance');
+    $default = '';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $temp->add($setting);
+
+    // Pre-login Content - Hebrew.
+    $name = 'theme_elegance/prelogincontenthe';
+    $title = get_string('prelogincontenthe', 'theme_elegance');
+    $description = get_string('prelogincontenthedesc', 'theme_elegance');
+    $default = '';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $temp->add($setting);
+
+	// Set Transparency.
+	$name = 'theme_elegance/prelogincontentdefaultlang';
+	$title = get_string('prelogincontentdefaultlang' , 'theme_elegance');
+	$description = get_string('prelogincontentdefaultlangdesc', 'theme_elegance');
+	$default = '1';
+	$choices = array(
+		'en'=>'English',
+		'he'=>'Hebrew'
+	);
+	$setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+   	$setting->set_updatedcallback('theme_reset_all_caches');
+	$temp->add($setting);
 
     // Frontpage Content.
     $name = 'theme_elegance/frontpagecontent';
@@ -108,6 +147,22 @@ defined('MOODLE_INTERNAL') || die;
     $default = '';
     $setting = new admin_setting_configtextarea($name, $title, $description, $default);
     $setting->set_updatedcallback('theme_reset_all_caches');
+    $temp->add($setting);
+
+    // Hide help in footer.
+    $name = 'theme_elegance/hidehelp';
+    $title = get_string('hidehelp', 'theme_elegance');
+    $description = get_string('hidehelpdesc', 'theme_elegance');
+    $default = '0';
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $temp->add($setting);
+
+    // Hide logged-in info and log-out in footer.
+    $name = 'theme_elegance/hideloggedin';
+    $title = get_string('hideloggedin', 'theme_elegance');
+    $description = get_string('hideloggedindesc', 'theme_elegance');
+    $default = '0';
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
     $temp->add($setting);
 
     // Custom Moodle Mobile CSS file.
@@ -478,6 +533,131 @@ defined('MOODLE_INTERNAL') || die;
     }
 
  	$ADMIN->add('theme_elegance', $temp);
+/* NEW FOOTER LOGOS DEV start */
+    /* Footer Logos Settings */
+    $temp = new admin_settingpage('theme_elegance_logos', get_string('logossettings', 'theme_elegance'));
+    $temp->add(new admin_setting_heading('theme_elegance_logos', get_string('logossettingssub', 'theme_elegance'),
+            format_text(get_string('logossettingsdesc' , 'theme_elegance'), FORMAT_MARKDOWN)));
+
+    // Set Number of Logos.
+    $name = 'theme_elegance/logonumber';
+    $title = get_string('logonumber' , 'theme_elegance');
+    $description = get_string('logonumberdesc', 'theme_elegance');
+    $default = '1';
+    $haslogonum = (!empty($PAGE->theme->settings->logonumber));
+    if ($haslogonum) {
+    		$logonum = $PAGE->theme->settings->logonumber;
+	} else {
+		$logonum = '1';
+	}
+	$choices = array(
+		$logonum => $logonum,
+		$logonum+1 => 'Add logo'
+	);
+	if ($logonum>1)
+	{
+		$choices[$logonum-1] = 'Delete last logo';
+	}
+
+    $setting = new admin_setting_configselect($name, $title . 
+	'<script>
+	$(function(){
+		$("#id_s_theme_elegance_logonumber").change(function(){
+			$("#adminsettings .form-submit").click();
+		});
+	})
+	</script>',
+	$description, $default, $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $temp->add($setting);
+
+    /* // Set the Logo Speed.
+    $name = 'theme_elegance/logospeed';
+    $title = get_string('logospeed' , 'theme_elegance');
+    $description = get_string('logospeeddesc', 'theme_elegance');
+    $default = '600';
+    $setting = new admin_setting_configtext($name, $title, $description, $default );
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $temp->add($setting); */
+
+    foreach (range(1, $logonum) as $logosnumber) {
+
+    	// This is the descriptor for the logos Settings.
+    	$name = 'theme_elegance/logos';
+        $title = get_string('logosindicator', 'theme_elegance');
+    	$information = get_string('logosindicatordesc', 'theme_elegance');
+    	$setting = new admin_setting_heading($name.$logosnumber, $title.$logosnumber, $information);
+    	$setting->set_updatedcallback('theme_reset_all_caches');
+    	$temp->add($setting);
+
+        // Enables the logo.
+        $name = 'theme_elegance/enablelogos' . $logosnumber;
+        $title = get_string('enablelogos', 'theme_elegance', $logosnumber);
+        $description = get_string('enablelogosdesc', 'theme_elegance', $logosnumber);
+        $default = false;
+        $setting = new admin_setting_configcheckbox($name, $title, $description, $default, true, false);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
+
+        // Logo Title.
+        $name = 'theme_elegance/logostitle' . $logosnumber;
+        $title = get_string('logostitle', 'theme_elegance', $logosnumber);
+        $description = get_string('logostitledesc', 'theme_elegance', $logosnumber);
+        $default = "Logo #$logosnumber";
+        $setting = new admin_setting_configtext($name, $title, $description, $default );
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
+
+        /* // Logo text.
+        $name = 'theme_elegance/logostext' . $logosnumber;
+        $title = get_string('logostext', 'theme_elegance', $logosnumber);
+        $description = get_string('logostextdesc', 'theme_elegance', $logosnumber);
+        $default = 'Bacon ipsum dolor sit amet turducken jerky beef ribeye boudin t-bone shank fatback pork loin pork short loin jowl flank meatloaf venison. Salami meatball sausage short loin beef ribs';
+        $setting = new admin_setting_configtextarea($name, $title, $description, $default);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
+
+        // Text for Logo Link.
+        $name = 'theme_elegance/logoslinktext' . $logosnumber;
+        $title = get_string('logoslinktext', 'theme_elegance', $logosnumber);
+        $description = get_string('logoslinktextdesc', 'theme_elegance', $logosnumber);
+        $default = 'Read More';
+        $setting = new admin_setting_configtext($name, $title, $description, $default);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting);
+
+        // Destination URL for Logo Link
+        $name = 'theme_elegance/logoslinkurl' . $logosnumber;
+        $title = get_string('logoslinkurl', 'theme_elegance', $logosnumber);
+        $description = get_string('logoslinkurldesc', 'theme_elegance', $logosnumber);
+        $default = '#';
+        $previewconfig = null;
+        $setting = new admin_setting_configtext($name, $title, $description, $default);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $temp->add($setting); */
+
+        // Logo Image.
+    	$name = 'theme_elegance/logosimage' . $logosnumber;
+    	$title = get_string('logosimage', 'theme_elegance', $logosnumber);
+    	$description = get_string('logosimagedesc', 'theme_elegance', $logosnumber);
+    	$setting = new admin_setting_configstoredfile($name, $title, $description, 'logosimage'.$logosnumber);
+    	$setting->set_updatedcallback('theme_reset_all_caches');
+    	$temp->add($setting);
+
+    	/* // Logo Background Color.
+    	$name = 'theme_elegance/logoscolor' . $logosnumber;
+    	$title = get_string('logoscolor', 'theme_elegance', $logosnumber);
+    	$description = get_string('logoscolordesc', 'theme_elegance', $logosnumber);
+    	$default = '#000';
+    	$previewconfig = null;
+    	$setting = new admin_setting_configcolourpicker($name, $title, $description, $default, $previewconfig);
+    	$setting->set_updatedcallback('theme_reset_all_caches');
+    	$temp->add($setting); */
+
+    }
+
+ 	$ADMIN->add('theme_elegance', $temp);
+/* NEW FOOTER LOGOS DEV end */
 
  	/* Marketing Spot Settings */
  		$temp = new admin_settingpage('theme_elegance_marketing', get_string('marketingheading', 'theme_elegance'));

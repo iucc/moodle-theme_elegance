@@ -48,6 +48,33 @@ if ($session_has_timed_out and !data_submitted()) {
 
 $hassidepost = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
 $hascopyright = (empty($PAGE->theme->settings->copyright)) ? false : $PAGE->theme->settings->copyright;
+$current_language = current_language();
+$prelogincontent = (isset($PAGE->theme->settings->prelogincontent) && $PAGE->theme->settings->prelogincontent ? $PAGE->theme->settings->prelogincontent : false);
+$current_language = current_language();
+if ($current_language=='en' || $current_language=='he')
+{
+	$prelogincontent = (
+		isset($PAGE->theme->settings->{"prelogincontent$current_language"}) && $PAGE->theme->settings->{"prelogincontent$current_language"}
+		?
+		$PAGE->theme->settings->{"prelogincontent$current_language"}
+		:
+		false
+	);
+} else {
+	$prelogincontent = (
+		isset($PAGE->theme->settings->prelogincontentdefaultlang) && $PAGE->theme->settings->prelogincontentdefaultlang
+		?
+		(
+			isset($PAGE->theme->settings->{"prelogincontent".$PAGE->theme->settings->prelogincontentdefaultlang}) && $PAGE->theme->settings->{"prelogincontent".$PAGE->theme->settings->prelogincontentdefaultlang}
+			?
+			$PAGE->theme->settings->{"prelogincontent".$PAGE->theme->settings->prelogincontentdefaultlang}
+			:
+			false
+		)
+		:
+		false
+	);
+}
 $hasfootnote = (empty($PAGE->theme->settings->footnote)) ? false : $PAGE->theme->settings->footnote;
 $hasltiles = (!empty($PAGE->theme->settings->tiles));
 
@@ -297,12 +324,18 @@ echo $OUTPUT->doctype() ?>
                         echo $OUTPUT->error_text($errormsg);
                         echo html_writer::end_tag('div');
                     }
-                    ?>
-    
-                    <form action="<?php echo $CFG->httpswwwroot; ?>/login/index.php" method="post" id="login" <?php echo $autocomplete; ?> >
-                        <div class="inputarea">
+				if ($prelogincontent)
+                {?>
+				<div id="loginmessagebox"><?php echo $prelogincontent ?></div>
+<?php 			}
+?>                <form action="<?php echo $CFG->httpswwwroot; ?>/login/index.php" method="post" id="login" <?php echo $autocomplete; ?> >
+                    <div class="inputarea ">
+                        <div>
                             <input type="text" name="username" placeholder="<?php echo get_string('username'); ?>" autocomplete="off"/>
+                        </div>
+                        <div>
                             <input type="password" name="password" id="password" placeholder="<?php echo get_string('password'); ?>"  value="" <?php echo $autocomplete; ?> />
+                        </div>
                             <?php
                             if (!right_to_left()) { ?>
                                 <button class="icon-submit fa fa-angle-right"></button>

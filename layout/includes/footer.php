@@ -70,7 +70,12 @@ $hassocialnetworks = ($hasfacebook || $hastwitter || $hasgoogleplus || $hasflick
 		</div>
 
 		<div class="col-lg-6 pull-right">
-			<?php echo $OUTPUT->login_info();
+			<?php
+			if (!$hideloggedin)
+			{
+				echo $OUTPUT->login_info();
+			}
+			
 			if ($hassocialnetworks) {
 				echo '<ul class="socials unstyled">';
 					if ($hasblog) {
@@ -177,8 +182,13 @@ $hassocialnetworks = ($hasfacebook || $hastwitter || $hasgoogleplus || $hasflick
 	</div>
 
 	<div class="row">
+<?php
+if (!$hidehelp)
+{?>
     <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
-		<?php echo $OUTPUT->standard_footer_html(); ?>
+<?php
+}
+?>		<?php echo $OUTPUT->standard_footer_html(); ?>
 	</div>
 
 </div>

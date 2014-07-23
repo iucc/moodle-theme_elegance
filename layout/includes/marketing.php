@@ -64,7 +64,7 @@
 					<div class="mod-wrapper-flat clearfix">
 						<h2 class="marketingheader">
 							<i class="fa fa-<?php echo $PAGE->theme->settings->marketingtitleicon ?>"></i>
-							<?php echo $PAGE->theme->settings->marketingtitle ?>
+							<?php echo class_exists('filter_multilang') ? filter_multilang::filter($PAGE->theme->settings->marketingtitle) : preg_replace('~^(<span.*?>.*?</span>).*~','$1',$PAGE->theme->settings->marketingtitle) ?>
 						</h2>
 
 						<!-- Start Spot One -->

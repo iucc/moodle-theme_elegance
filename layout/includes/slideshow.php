@@ -140,18 +140,19 @@ $hasslideshow = ($hasslide1 || $hasslide2 || $hasslide3 || $hasslide4|| $hasslid
 <?php if ($hasslideshow) { ?>
 <div class="banner has-dots" style="overflow: hidden; width: 100%; height: 415px;">
 	<ul style="width: 400%; position: relative; left: -200%; height: 415px;">
-
-		<?php if ($hasslide1) { ?>
-		<li id="slide1" style="background-image: url(<?php echo $slide1image ?>); background-size: 100%; width: 25%;">
-			<h1><?php echo $slide1title ?></h1>
-			<p><?php echo $slide1caption ?></p>
-			<?php if ($slide1linktext) { ?>
-				<a class="btn" href="<?php echo $slide1url ?>"><?php echo $slide1linktext ?></a>
+<?php $slidewidths = array(25, 25, 25, 25, 25, 26, 27, 28, 29, 30);
+for ($slide = 1; ${'hasslide'.$slide} ; ++$slide)
+{ ?>
+		<li id="slide<?php echo $slide ?>" style="background-image: url(<?php echo ${'slide'.$slide.'image'} ?>); background-size: 100%; width: <?php echo $slidewidths[$slide-1] ?>%;">
+			<h1<?php if (preg_match('~[א-ת]~', ${'slide'.$slide.'title'})) echo ' lang="he"' ?>><?php echo ${'slide'.$slide.'title'} ?></h1>
+			<p<?php if (preg_match('~[א-ת]~', ${'slide'.$slide.'title'})) echo ' lang="he"' ?>><?php echo ${'slide'.$slide.'caption'} ?></p>
+			<?php if (${'slide'.$slide.'linktext'}) { ?>
+				<a<?php if (preg_match('~[א-ת]~', ${'slide'.$slide.'title'})) echo ' lang="he"' ?> class="btn" href="<?php echo ${'slide'.$slide.'url'} ?>"><?php echo ${'slide'.$slide.'linktext'} ?></a>
 			<?php } ?>
 		</li>
-		<?php } ?>
+<?php } ?>
 
-		<?php if ($hasslide2) { ?>
+		<?php /*  if ($hasslide2) { ?>
 		<li id="slide2" style="background-image: url(<?php echo $slide2image ?>); background-size: 100%; width: 25%;">
 			<h1><?php echo $slide2title ?></h1>
 			<p><?php echo $slide2caption ?></p>
@@ -241,7 +242,8 @@ $hasslideshow = ($hasslide1 || $hasslide2 || $hasslide3 || $hasslide4|| $hasslid
 				<a class="btn" href="<?php echo $slide10url ?>"><?php echo $slide10linktext ?></a>
 			<?php } ?>
 		</li>
-		<?php } ?>
+		<?php } 
+		*/ ?>
 
 	</ul>
 </div>

@@ -32,6 +32,7 @@ $haslogo = (empty($PAGE->theme->settings->logo)) ? false : $PAGE->theme->setting
 $invert = (!empty($PAGE->theme->settings->invert)) ? true : $PAGE->theme->settings->invert;
 $fluid = (!empty($PAGE->layout_options['fluid']));
 $sidebar = "RIGHT";
+			$mobileblocksabovemain = (isset($PAGE->theme->settings->mobileblocksabovemain) && $PAGE->theme->settings->mobileblocksabovemain) ? true : false;
 
 if ($haslogo) {
     $logo = '<div id="logo"></div>';
@@ -114,7 +115,12 @@ echo $OUTPUT->doctype() ?>
             </div>
         </header>
         <div id="page-content" class="row">
-            <div id="region-main" class="<?php echo $regions['content']; ?>">
+        <?php
+        if ($mobileblocksabovemain && $knownregionpost) {
+            echo $OUTPUT->blocks('side-post', $regions['post'] . " forcefloatright");
+        }?>
+
+        <div id="region-main" class="<?php echo $regions['content']; ?><?php if (!$mobileblocksabovemain) echo ' forcefloatleft'; ?>">
 			    <div id="heading"><?php echo $OUTPUT->page_heading(); ?></div>
                     <?php
                     echo $OUTPUT->course_content_header();
@@ -123,7 +129,7 @@ echo $OUTPUT->doctype() ?>
         			?>
                 </div>
                 <?php
-                if ($knownregionpost) {
+        if (!$mobileblocksabovemain && $knownregionpost) {
                     echo $OUTPUT->blocks('side-post', $regions['post']);
                 }?>
             </div>

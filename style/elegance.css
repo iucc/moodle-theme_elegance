@@ -24,7 +24,8 @@
 .coursebox.remotecoursebox .remotecourseinfo {
 	max-width:100%;
 	width:auto;
-	padding:0;
+	/* padding:0; */
+	padding:0 10px; /* NZN */
 	margin:0 auto;
 }
 
@@ -638,6 +639,12 @@ h2.quicklinksheader::after {
 	margin-bottom: 5px;
 }
 
+/* NZN start */
+.dropdown:hover>.dropdown-menu {
+	display: block;
+}
+/* NZN end */
+
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus,
 .navbar-default .navbar-nav>.open>a, 
 .navbar-default .navbar-nav>.open>a:hover, 
@@ -863,7 +870,7 @@ border-bottom-color: #888;
 .sitelink a {
 	float: left;
 	margin-right: 15px;
-	margin-top: -8px;
+	/* margin-top: -8px; */ /* NZN */
 	width: 100px;
 	height: 30px;
 	background: url([[pix:theme|moodlelogo]]);
@@ -872,6 +879,7 @@ border-bottom-color: #888;
 
 #page-footer .copy {
 	float: left;
+	padding: 8px 0 0; /* NZN */
 }
 
 #page-footer .footnote {
@@ -896,10 +904,11 @@ border-bottom-color: #888;
 	margin-bottom: 10px;
 }
 
+.helplink.hidden {display: none;} /* NZN */
 #page-footer .helplink a{
 	float: left;
-	position: relative;
-	top: -20px;
+	/* position: relative;
+	top: -20px; */ /* NZN */
 	display: inline-block;
 	border: 1px solid #f0ad4e;
 	background-color: #f0ad4e;
@@ -1433,6 +1442,11 @@ content: "\e079";
 .block_messages .header .title h2:before {
     content:"\f0e0";
 }
+/* start NZN */
+.block_messages{position: relative;}
+.message_count{display: none;}
+.block_messages.hidden .message_count{display: inline-block; position: absolute; top: -5px; left: -5px; background: red; color: white; border-radius: 16px; padding: 0 4px; font-size: 12px; line-height: 15px;}
+/* end NZN */
 
 .block_community .header .title h2:before {
     content:"\f0ac";
@@ -2138,21 +2152,21 @@ letter-spacing:0.1em;
 input[type="password"]+input[type="submit"]{
 	margin: 0 0 11px 0;
 }
-
-textarea, input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
+/* NZN: added "form " before each of the following classes to override moodle.css */
+textarea, form input[type="text"],
+form input[type="password"],
+form input[type="datetime"],
+form input[type="datetime-local"],
+form input[type="date"],
+form input[type="month"],
+form input[type="time"],
+form input[type="week"],
+form input[type="number"],
+form input[type="email"],
+form input[type="url"],
+form input[type="search"],
+form input[type="tel"],
+form input[type="color"],
 .uneditable-input {
 	background-color: #fff;
 	padding: 0px 10px 0 10px;

@@ -50,7 +50,7 @@ if ('ltr' === get_string('thisdirection', 'langconfig')) {
     $THEME->parents_exclude_sheets = array(
         'bootstrap'=>array( 
             'custom',
-            'moodle-rtl',
+            // 'moodle-rtl',
             'forms-rtl',
             'yui2-rtl'
         )
@@ -59,7 +59,7 @@ if ('ltr' === get_string('thisdirection', 'langconfig')) {
     $THEME->parents_exclude_sheets = array(
         'bootstrap'=>array( 
             'custom',
-            'moodle'
+            // 'moodle'
         )
     );
 }
@@ -83,7 +83,7 @@ if ((!empty($THEME->settings->enablecustomlogin)) && ($THEME->settings->enablecu
 if ('ltr' === get_string('thisdirection', 'langconfig')) {
     $THEME->sheets = array('font-awesome', 'google-fonts', $categorysheet, $loginsheet, 'nprogress', 'elegance', 'mobile');
 } else {
-    $THEME->sheets = array('tinymce-rtl', 'font-awesome', 'google-fonts', $categorysheet, $loginsheet, 'nprogress', 'elegance', 'mobile');
+    $THEME->sheets = array('tinymce-rtl', 'font-awesome', 'google-fonts', $categorysheet, $loginsheet, 'nprogress', 'elegance', 'mobile', 'elegance-rtl');
 }
 
 $THEME->layouts = array(
@@ -200,6 +200,8 @@ $THEME->layouts = array(
 $THEME->csspostprocess = 'theme_elegance_process_css';
 
 $THEME->javascripts = array(
+	'message_count',
+	'desktopview',
 );
 
 $THEME->javascripts_footer = array(
@@ -212,3 +214,4 @@ if (core_useragent::is_ie() && !core_useragent::check_ie_version('9.0')) {
 }
 
 $THEME->hidefromselector = false;
+$THEME->enable_dock = true;
