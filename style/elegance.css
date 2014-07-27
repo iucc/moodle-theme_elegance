@@ -24,7 +24,8 @@
 .coursebox.remotecoursebox .remotecourseinfo {
 	max-width:100%;
 	width:auto;
-	padding:0;
+	/* padding:0; */
+	padding:0 10px;
 	margin:0 auto;
 }
 
@@ -638,6 +639,12 @@ h2.quicklinksheader::after {
 	margin-bottom: 5px;
 }
 
+/* start */
+.dropdown:hover>.dropdown-menu {
+	display: block;
+}
+/* end */
+
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus,
 .navbar-default .navbar-nav>.open>a, 
 .navbar-default .navbar-nav>.open>a:hover, 
@@ -895,6 +902,7 @@ border-bottom-color: #888;
 	font-weight: 400;
 	margin-bottom: 10px;
 }
+
 
 #page-footer .helplink a{
 	float: left;
@@ -2138,21 +2146,21 @@ letter-spacing:0.1em;
 input[type="password"]+input[type="submit"]{
 	margin: 0 0 11px 0;
 }
-
-textarea, input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
+/* added "form " before each of the following classes to override moodle.css */
+textarea, form input[type="text"],
+form input[type="password"],
+form input[type="datetime"],
+form input[type="datetime-local"],
+form input[type="date"],
+form input[type="month"],
+form input[type="time"],
+form input[type="week"],
+form input[type="number"],
+form input[type="email"],
+form input[type="url"],
+form input[type="search"],
+form input[type="tel"],
+form input[type="color"],
 .uneditable-input {
 	background-color: #fff;
 	padding: 0px 10px 0 10px;
