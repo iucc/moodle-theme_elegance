@@ -139,9 +139,9 @@ echo $OUTPUT->doctype() ?>
         <div id="page-content" class="row">
 		<?php
         if ($mobileblocksabovemain && $hassidepost) {
-            echo $OUTPUT->blocks('side-post', $regions['post'] . " forcefloatright");
+            echo $OUTPUT->blocks('side-post', $regions['post'] . " pull-right");
         }?>
-            <div id="region-main" class="<?php echo $regions['content']; ?><?php if ($mobileblocksabovemain) echo ' forcefloatright'; ?>">
+            <div id="region-main" class="<?php echo $regions['content']; ?><?php if ($mobileblocksabovemain) echo ' pull-right'; ?>">
     
     		    <!-- Start Quick Links -->
     		    <?php
@@ -168,13 +168,12 @@ echo $OUTPUT->doctype() ?>
             }?>
     
     		<?php if (is_siteadmin()) { ?>
-            <div id="hidden-blocks" class="<?php echo $regions['content']; ?><?php if ($mobileblocksabovemain) echo ' forcefloatright'; ?>">
+            <div id="hidden-blocks" class="<?php echo $regions['content']; ?><?php if ($mobileblocksabovemain) echo ' pull-right'; ?>">
             		<h4><?php echo get_string('visibleadminonly', 'theme_elegance') ?></h4>
             		<?php echo $OUTPUT->blocks('hidden-dock'); ?>
             </div>
             <?php } ?>
         </div>
-    
     </div>
 </section>
 

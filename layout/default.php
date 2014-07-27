@@ -117,7 +117,7 @@ echo $OUTPUT->doctype() ?>
         <div id="page-content" class="row">
 		<?php
 		if ($mobileblocksabovemain && $knownregionpost) {
-			echo $OUTPUT->blocks('side-post', $regions['post'] . " forcefloatright");
+			echo $OUTPUT->blocks('side-post', $regions['post'] . " pull-right");
 		}?>
 
 		<div id="region-main" class="<?php echo $regions['content']; ?>"<?php if ($mobileblocksabovemain) echo ' style="float: right;"'; ?>>
