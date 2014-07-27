@@ -25,7 +25,7 @@
 	max-width:100%;
 	width:auto;
 	/* padding:0; */
-	padding:0 10px;
+	padding:0 10px; /* NZN */
 	margin:0 auto;
 }
 
@@ -639,11 +639,11 @@ h2.quicklinksheader::after {
 	margin-bottom: 5px;
 }
 
-/* start */
+/* NZN start */
 .dropdown:hover>.dropdown-menu {
 	display: block;
 }
-/* end */
+/* NZN end */
 
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus,
 .navbar-default .navbar-nav>.open>a, 
@@ -903,6 +903,7 @@ border-bottom-color: #888;
 	margin-bottom: 10px;
 }
 
+.helplink {display: none;} /* NZN */
 
 #page-footer .helplink a{
 	float: left;
@@ -2146,7 +2147,7 @@ letter-spacing:0.1em;
 input[type="password"]+input[type="submit"]{
 	margin: 0 0 11px 0;
 }
-/* added "form " before each of the following classes to override moodle.css */
+/* NZN: added "form " before each of the following classes to override moodle.css */
 textarea, form input[type="text"],
 form input[type="password"],
 form input[type="datetime"],
