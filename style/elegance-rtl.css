@@ -191,3 +191,5 @@ margin-right: 0px;
 }
 
 #moodle-navbar a[title="שפת ממשק"] + .dropdown-menu li:first-child a{unicode-bidi: bidi-override; direction: ltr;}
+
+.dir-rtl .block_messages.hidden .message_count{right: -5px; left: auto;}

@@ -200,6 +200,8 @@ $THEME->layouts = array(
 $THEME->csspostprocess = 'theme_elegance_process_css';
 
 $THEME->javascripts = array(
+	'message_count',
+	'desktopview',
 );
 
 $THEME->javascripts_footer = array(
