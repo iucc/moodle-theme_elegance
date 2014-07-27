@@ -35,6 +35,7 @@ $fluid = (!empty($PAGE->layout_options['fluid']));
 $hasmarketing = (empty($PAGE->theme->settings->togglemarketing)) ? false : $PAGE->theme->settings->togglemarketing;
 $hasquicklinks = (empty($PAGE->theme->settings->togglequicklinks)) ? false : $PAGE->theme->settings->togglequicklinks;
 $hasfrontpagecontent = (empty($PAGE->theme->settings->frontpagecontent)) ? false : $PAGE->theme->settings->frontpagecontent;
+$mobileblocksabovemain = (isset($PAGE->theme->settings->mobileblocksabovemain) && $PAGE->theme->settings->mobileblocksabovemain) ? true : false;
 
 if ($haslogo) {
 	$logo = '<div id="logo"></div>';
@@ -136,7 +137,11 @@ echo $OUTPUT->doctype() ?>
         <!-- End Marketing Spots -->
     
         <div id="page-content" class="row">
-            <div id="region-main" class="<?php echo $regions['content']; ?>">
+		<?php
+        if ($mobileblocksabovemain && $hassidepost) {
+            echo $OUTPUT->blocks('side-post', $regions['post'] . " forcefloatright");
+        }?>
+            <div id="region-main" class="<?php echo $regions['content']; ?><?php if ($mobileblocksabovemain) echo ' forcefloatright'; ?>">
     
     		    <!-- Start Quick Links -->
     		    <?php
@@ -158,12 +163,12 @@ echo $OUTPUT->doctype() ?>
             </div>
     
             <?php
-            if ($hassidepost) {
+            if (!$mobileblocksabovemain && $hassidepost) {
                 echo $OUTPUT->blocks('side-post', $regions['post']);
             }?>
     
     		<?php if (is_siteadmin()) { ?>
-            <div id="hidden-blocks" class="<?php echo $regions['content']; ?>">
+            <div id="hidden-blocks" class="<?php echo $regions['content']; ?><?php if ($mobileblocksabovemain) echo ' forcefloatright'; ?>">
             		<h4><?php echo get_string('visibleadminonly', 'theme_elegance') ?></h4>
             		<?php echo $OUTPUT->blocks('hidden-dock'); ?>
             </div>

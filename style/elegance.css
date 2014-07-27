@@ -29,6 +29,8 @@
 	margin:0 auto;
 }
 
+.forcefloatright{float: right !important;}
+
 /* @end */
 
 
@@ -903,7 +905,7 @@ border-bottom-color: #888;
 	margin-bottom: 10px;
 }
 
-.helplink {display: none;} /* NZN */
+.helplink.hidden {display: none;} /* NZN */
 
 #page-footer .helplink a{
 	float: left;

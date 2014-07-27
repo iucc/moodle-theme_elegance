@@ -60,6 +60,9 @@ $string['invertdesc'] = 'Swaps text and background for the navbar at the top of 
 $string['fluidwidth'] = 'Fluid Width Theme';
 $string['fluidwidthdesc'] = 'Enable this option to allow using your full screen.';
 
+$string['mobileblocksabovemain'] = 'Blocks above main for mobile';
+$string['mobileblocksabovemain_desc'] = 'Enable this option to display side-blocks above main content instead of below it, when in mobile view';
+
 $string['fonticons'] = 'Use Icon Font';
 $string['fonticonsdesc'] = 'Enable this option to use the Glyphicon icon font.';
 

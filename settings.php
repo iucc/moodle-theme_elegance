@@ -51,6 +51,14 @@ defined('MOODLE_INTERNAL') || die;
     $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
     $temp->add($setting);
 
+    // Turn on fluid width
+    $name = 'theme_elegance/mobileblocksabovemain';
+    $title = get_string('mobileblocksabovemain', 'theme_elegance');
+    $description = get_string('mobileblocksabovemain_desc', 'theme_elegance');
+    $default = '0';
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $temp->add($setting);
+
     // Font Icons
     $name = 'theme_elegance/fonticons';
     $title = get_string('fonticons', 'theme_elegance');
