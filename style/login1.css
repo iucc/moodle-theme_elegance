@@ -39,6 +39,11 @@ html.login-page{
     font-family: "Roboto";
 }
 
+.dir-rtl .loginpanel,
+.dir-rtl .signuppanel {
+    font-family: Arial;
+}
+
 .loginpanel {
 	margin-bottom: 20px;
 }
@@ -48,11 +53,12 @@ html.login-page{
 }
 
 .loginpanel form{
-    background: [[setting:themecolor]];
+   /*  background: [[setting:themecolor]];
+    height: 100px; */ /* NZN */
     width: 95%;
-    -webkit-border-radius: 15px;
+    /* -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
-    border-radius: 15px;
+    border-radius: 15px; */ /* NZN */
 }
 
 .loginpanel form#guestlogin  {
@@ -96,10 +102,10 @@ html.login-page{
     font-size: 50px;
     font-weight: bold;
     height: 63px;
-    position: relative;
+    /* position: relative;
     float: right;
     right: -30px;
-    top: -90px;
+    top: -75px; */ /* NZN */
     width: 63px;
     padding: 0px 0px 0px 5px;
     text-align: center;
@@ -110,16 +116,43 @@ html.login-page{
     -webkit-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
+	/* start NZN */
+    position: absolute;
+    top: 17px;
+    right: -30px;
+	/* end NZN */
 }
+
 .loginpanel .icon-submit:hover{
     background-color: #388f9d;
 }
 
-.loginpanel form .inputarea input[type="text"],
-.loginpanel form .inputarea input[type="password"]{
+.dir-rtl .loginpanel .icon-submit {
+    float: left;
+    left: -30px;
+    right: auto;
+    padding: 0px 5px 0px 0px;
+}
+
+.loginpanel form .inputarea{
+    height: 95px;
+	/* start NZN */
+	position: relative;
+    background: [[setting:themecolor]];
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+	/* end NZN */
+}
+
+.loginpanel form .inputarea div input[type="text"],
+.loginpanel form .inputarea div input[type="password"]{
     box-sizing: border-box;
     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box;
+    box-shadow: none;
+    -webkit-box-shadow: none; 
+    -moz-box-shadow: none;
     background: none;
     border: 0;
     color: #FFFFFF;
@@ -127,26 +160,45 @@ html.login-page{
     font-family: "Roboto";
     font-size: 16px;
     font-weight: 400;
-    height: 49px;
+    /* height: 49px; *//* NZN */
     padding: 2px 4px 0 20px;
     width: 100%;
-}
-.loginpanel form .inputarea input[type="text"]:focus,
-.loginpanel form .inputarea input[type="password"]:focus{
-    outline:none;
-}
-.loginpanel form .inputarea input[type="text"]:-moz-placeholder,
-.loginpanel form .inputarea input[type="password"]:-moz-placeholder,
-.loginpanel form .inputarea input[type="text"]::-moz-placeholder,
-.loginpanel form .inputarea input[type="password"]::-moz-placeholder,
-.loginpanel form .inputarea input[type="text"]::-webkit-input-placeholder,
-.loginpanel form .inputarea input[type="password"]::-webkit-input-placeholder,
-.loginpanel form .inputarea input[type="text"]:-ms-input-placeholder,
-.loginpanel form .inputarea input[type="password"]:-ms-input-placeholder{
-    color: #FFFFFF !important;
+	border-radius: 0;/* NZN */
+	
 }
 
-.loginpanel form .inputarea input[type="text"]{
+.dir-rtl .loginpanel form .inputarea div input[type="text"],
+.dir-rtl .loginpanel form .inputarea div input[type="password"] {
+    font-family: Arial;
+}
+
+#extra_login_buttons>*{float: left;}
+.dir-rtl #extra_login_buttons>*{float: right;}
+
+@media(max-width: 767px){
+	#extra_login_buttons{text-align: center;}
+	.dir-rtl #extra_login_buttons>*, #extra_login_buttons>*{float: none;}
+	#extra_login_buttons>*:first-child{margin: 0 0 4px;}
+}
+
+.loginpanel form .inputarea div input[type="text"]:focus,
+.loginpanel form .inputarea div input[type="password"]:focus{
+    outline:none;
+}
+.loginpanel form .inputarea div input[type="text"]:-moz-placeholder,
+.loginpanel form .inputarea div input[type="password"]:-moz-placeholder,
+.loginpanel form .inputarea div input[type="text"]::-moz-placeholder,
+.loginpanel form .inputarea div input[type="password"]::-moz-placeholder,
+.loginpanel form .inputarea div input[type="text"]::-webkit-input-placeholder,
+.loginpanel form .inputarea div input[type="password"]::-webkit-input-placeholder,
+.loginpanel form .inputarea div input[type="text"]:-ms-input-placeholder,
+.loginpanel form .inputarea div input[type="password"]:-ms-input-placeholder{
+    color: #FFFFFF !important;
+}
+.loginpanel form .inputarea div input[type="password"]{
+    border-top: 5px solid #FFFFFF;
+}
+.loginpanel form .inputarea div input[type="text"]{
     margin-right: 15px;
 }
 .loginpanel form p{
@@ -156,63 +208,80 @@ html.login-page{
 }
 .loginpanel label{
     color: rgb(105, 105, 109);
-    float: right;
+    /* float: right; */ /* NZN */
     font-size: 13px;
     text-decoration: none;
 }
 
 .loginpanel a {
-	margin-top: 10px;
+	/* margin-top: 10px; */ /* NZN */
 	font-size: 13px;
 	font-weight: bold;
 	float: left;
 }
 
 
-.loginpanel form div.remember{
+.loginpanel form .remember{
     color: [[setting:themecolor]];
-    float: left;
+    /* float: left; */ /* NZN */
+    /* float: left; */ /* NZN */
     font-size: 13px;
     margin-top: 10px; 
-    margin-right: 30px;
+    /* margin-right: 30px; */ /* NZN */
+    width: 100%; /* NZN */
+    text-align: left; /* NZN */
 }
-.loginpanel form div.remember input[type="checkbox"]{
-    cursor: pointer;
-    float: left;
-    margin-top: 6px; 
+.loginpanel form .remember td{
 }
-.loginpanel form div.remember label{
-    float: left;
+.loginpanel form .remember td:first-child{
+	width: 1px;
+}
+.dir-rtl .loginpanel form .remember{
+    margin-right: 0px;
+    text-align: right; /* NZN */
 }
 
-.loginpanel form .inputarea input[type="text"]::-webkit-input-placeholder,
-.loginpanel form .inputarea input[type="password"]::-webkit-input-placeholder{
+.dir-rtl .loginpanel form .remember td{
+	vertical-align: middle;
+}
+.loginpanel form .remember input[type="checkbox"]{
+    cursor: pointer;
+    /* float: left;
+    margin-top: 6px;  */ /* NZN */
+}
+.loginpanel form .remember label{
+	white-space: nowrap;
+    /* float: left; */ /* NZN */
+}
+.dir-rtl .loginpanel form .remember input[type="checkbox"]{
+    /* float: right; */
+}
+.dir-rtl .loginpanel form .remember label{
+    float: right;
+}
+
+.loginpanel form .inputarea div input[type="text"]::-webkit-input-placeholder,
+.loginpanel form .inputarea div input[type="password"]::-webkit-input-placeholder{
    color: #FFFFFF;
 }
 
-.loginpanel form .inputarea input[type="text"]:-moz-placeholder,
-.loginpanel form .inputarea input[type="password"]:-moz-placeholder{ /* Firefox 18- */
+.loginpanel form .inputarea div input[type="text"]:-moz-placeholder,
+.loginpanel form .inputarea div input[type="password"]:-moz-placeholder{ /* Firefox 18- */
    color: #FFFFFF;  
 }
 
-.loginpanel form .inputarea input[type="text"]::-moz-placeholder,
-.loginpanel form .inputarea input[type="password"]::-moz-placeholder{  /* Firefox 19+ */
+.loginpanel form .inputarea div input[type="text"]::-moz-placeholder,
+.loginpanel form .inputarea div input[type="password"]::-moz-placeholder{  /* Firefox 19+ */
    color: #FFFFFF;  
 }
 
-.loginpanel form .inputarea input[type="text"]:-ms-input-placeholder,
-.loginpanel form .inputarea input[type="password"]:-ms-input-placeholder{  
+.loginpanel form .inputarea div input[type="text"]:-ms-input-placeholder,
+.loginpanel form .inputarea div input[type="password"]:-ms-input-placeholder{  
    color: #FFFFFF;  
 }
 
 .guestsub .desc {
 	display: none;
-}
-
-.dir-rtl .loginpanel .icon-submit {
-    float: left;
-    left: -30px;
-    right: auto;
 }
 
 .loginpanel form a {
@@ -239,11 +308,21 @@ html.login-page{
 	font-weight: 500;
 	font-family: "Roboto";
 	display: inline-block;
-	margin-top: 4px;
+	/* margin-top: 4px; */ /* NZN */
+}
+.loginpanel form input[type="submit"] {
+	-webkit-transition: 0.25s;
+	-moz-transition: 0.25s;
+	-o-transition: 0.25s;
+	transition: 0.25s;
+}
+.dir-rtl .loginpanel form a  {
+    font-family: Arial;
 }
 
-.loginpanel form a:hover {
-	background: #388f9d;
+.loginpanel form a:hover,.loginpanel form input[type="submit"]:hover {
+	background: #7C7C7C;
+	color: #fff;
 }
 
 /* @end */

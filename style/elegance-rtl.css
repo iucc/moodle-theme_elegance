@@ -147,10 +147,11 @@ margin-right: 0px;
 		float: right;
 	}
 	.dir-rtl .mform .fitemtitle, .form-label {
+		float: right;
 		text-align: left;
 	}
 	.form-item .form-label{
-		float: right;
+		float: left;
 		text-align: right;
 	}
 }
@@ -185,11 +186,19 @@ margin-right: 0px;
 .dir-rtl .box.message .contactselector form#usergroupform fieldset select{
 	float: right;
 }
-.form-item .form-label{
+
+.dir-rtl .form-item .form-label{
 	float: right;
-	text-align: right;
+	text-align: left;
 }
 
 #moodle-navbar a[title="שפת ממשק"] + .dropdown-menu li:first-child a{unicode-bidi: bidi-override; direction: ltr;}
 
 .dir-rtl .block_messages.hidden .message_count{right: -5px; left: auto;}
+.dir-rtl button,
+.dir-rtl input.form-submit,
+.dir-rtl input[type="button"],
+.dir-rtl input[type="submit"],
+.dir-rtl input[type="reset"] {
+  margin: 0 5px 3px 0;
+}
