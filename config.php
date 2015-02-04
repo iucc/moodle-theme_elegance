@@ -89,8 +89,9 @@ $THEME->layouts = array(
     ),
     // Main course page.
     'course' => array(
-        'file' => 'default.php',
-        'regions' => array('side-post'),
+        //'file' => 'default.php',
+        'file' => 'course_extrablocks.php',
+        'regions' => array('side-post', 'above-content'),
         'defaultregion' => 'side-post',
         'options' => array('langmenu'=>true),
     ),

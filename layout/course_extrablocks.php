@@ -126,6 +126,9 @@ echo $OUTPUT->doctype() ?>
         <div id="region-main" class="<?php echo $regions['content']; ?>">
             <?php
             echo $OUTPUT->course_content_header();
+                echo '<div id="region-above-content">';
+                echo $OUTPUT->blocks('above-content', $regions['above-content']);
+                echo '</div>';
             echo $OUTPUT->main_content();
             echo $OUTPUT->course_content_footer();
             ?>
