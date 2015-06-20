@@ -202,3 +202,8 @@ margin-right: 0px;
 .dir-rtl input[type="reset"] {
   margin: 0 5px 3px 0;
 }
+
+.dir-rtl #moodle-navbar a[title="שפת ממשק"] + .dropdown-menu li:first-child a {
+	unicode-bidi: normal;
+	direction: ltr;
+}
